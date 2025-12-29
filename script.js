@@ -16,10 +16,12 @@ function showAuthor() {
 function showContact() {
     document.getElementById("content").innerHTML = `
         <h1>Kontakt</h1>
-        <a href="https://www.youtube.com/channel/UCHjeQMZe8vW_uVOaW9evdQw">Youtube</a>
-        <p>Email: NULL</p>
+        <h3>
+        <a href="https://www.youtube.com/channel/UCHjeQMZe8vW_uVOaW9evdQw">Youtube</a> <- porzucone dawno temu
         <p>Telegram: @Szymonejros </p>
         <p>Discord: szymon02034</p>
+        <p>Steam: Szymonejros / https://steamcommunity.com/profiles/76561198986131963/</p>
+        </h3>
     `;
 }
 function showAktualizacje() {
