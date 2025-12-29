@@ -1,15 +1,16 @@
 function showHome() {
     document.getElementById("content").innerHTML = `
         <h1>Strona główna</h1>
-        <p>Witaj na mojej pierwszej stronie 😄</p>
+        <h3>Witaj na mojej pierwszej stronie ^w^</h3>
     `;
 }
 
 function showAuthor() {
     document.getElementById("content").innerHTML = `
-        <h1>O autorze</h1>
-        <p>Stworzone przez <b>Szymon Rak</b> &copy; 2024</p>
-        <p>Uczę się HTML i robię swoje pierwsze strony 😎</p>
+        <h3>O autorze</h3>
+        <h3>
+        Stworzone przez <b>Szymon Rak</b> &copy; 2024
+        Uczę się HTML i robię swoje strony internetowe wykorzystując wiedzę ze szkoły i pozyskaną poza nią</h3>
     `;
 }
 
@@ -29,16 +30,16 @@ function showAktualizacje() {
     <h1>Aktualizacje</h1>
     <ul>
     <h2>
-        <li> strona została utworzona
-        <li>29.12.2025: Dodano:
-                         interaktywne Menu"
-                         Ikonę
-                         Zmieniono Tytuł
-                         Zmieniono tło</li>
-                         Dodano stronę kontaktową
-                         Poprawiono błędy w kodzie
-                         Zaktualizowano sekcję "O autorze"
-                         Dodano stary wygląd strony
+         2023: <li> strona została utworzona
+         <br></br>29.12.2025 Dodano:
+                        <li> interaktywne Menu"
+                        <li> Ikonę
+                        <li> Zmieniono Tytuł
+                        <li> Zmieniono tło
+                        <li>  Dodano stronę kontaktową
+                        <li>  Poprawiono błędy w kodzie
+                        <li>  Zaktualizowano sekcję "O autorze"
+                        <li>  Dodano stary wygląd strony
     </h2>
     `;
 }
