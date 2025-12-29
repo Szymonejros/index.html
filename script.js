@@ -42,6 +42,7 @@ function showAktualizacje() {
                         <li>  Dodano stary wygląd strony
     </h2>
     `;
+    console.log(`hasło do sekretnej sekcji to: LI0N123`);
 }
 function showGaleria() {
     document.getElementById("content").innerHTML = `
@@ -62,5 +63,61 @@ function showStara() {
     <h1> wiem że źle wygląda ta góra ale mam sentyment do starych rzeczy</h1>
     `;
 }
+function showCode() {
+    document.getElementById("content").innerHTML = `
+        <h1>Sekretna sekcja 🔒</h1>
+
+        <p>Podaj kod:</p>
+
+        <input type="password" id="secretCode" placeholder="wpisz kod">
+        <br><br>
+        <button onclick="checkCode()">Wyślij</button>
+
+        <p id="error" style="color:red;"></p>
+    `;
+}
+
+// 🔑 MAPA KODÓW → FUNKCJE
+const codes = {
+    "LI0N123": showSecretX,      // kod do sekcji X
+    "RETRO777": showSecretY,   // kod do sekcji Y
+    "ADMIN42": showSecretAdmin // trzeci kod (opcjonalnie)
+};
+
+function checkCode() {
+    const code = document.getElementById("secretCode").value;
+
+    if (codes[code]) {
+        codes[code](); // uruchamia odpowiednią sekcję
+    } else {
+        document.getElementById("error").innerText = "❌ Zły kod";
+    }
+}
+
+// 🔓 SEKCJA X
+function showSecretX() {
+    document.getElementById("content").innerHTML = `
+        <h1>UwU</h1>
+        <p>Odkryłeś tajną sekcję X</p>
+        <p>Stworzone przez Szymon Rak &copy; 2024</p>
+    `;
+}
+
+// 🔓 SEKCJA Y
+function showSecretY() {
+    document.getElementById("content").innerHTML = `
+        <h1>Sekcja Y 🎮</h1>
+        <p>Odkryłeś tajną sekcję Y</p>
+        <p>Stworzone przez Szymon Rak &copy; 2025/26</p>
+    `;
+}
+
+// 🔓 ADMIN (opcjonalne)
+function showSecretAdmin() {
+    document.getElementById("content").innerHTML = `
+    nudes here
+    `;
+}
+
 // pokaż stronę główną po starcie
 showHome();
