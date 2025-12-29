@@ -43,6 +43,13 @@ function showAktualizacje() {
     </h2>
     `;
 }
+function showGaleria() {
+    document.getElementById("content").innerHTML = `
+    <h1>Galeria</h1>
+    <h3>Galeria jest w budowie :3</h3>
+    <h3>Będą tutaj zdjęcia z życia i screeny z gier </h3>
+        `;
+}
 function showStara() {
     document.getElementById("content").innerHTML = `
     <h1>Stara Strona</h1>
