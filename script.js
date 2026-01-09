@@ -47,8 +47,32 @@ function showAktualizacje() {
 function showGaleria() {
     document.getElementById("content").innerHTML = `
     <h1>Galeria</h1>
+    <img src="zdjecia/enlisted1.png" alt="enlisted" />
+    <style>
+        img {
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            left: 10px;
+            top: 10%;
+        }
+    </style>
     <h3>Galeria jest w budowie :3</h3>
-    <h3>Będą tutaj zdjęcia z życia i screeny z gier </h3>
+    <h3 id="sss">Będą tutaj zdjęcia z życia i screeny z gier </h3>
+    <style>
+        h3 {
+            position: absolute;
+            top: 80%;
+            left: 10px;
+        }
+    </style>
+    <style>
+        #sss {
+            position: absolute;
+            top: 83%;
+            left: 10px;
+        }
+    </style>
         `;
 }
 function showStara() {
@@ -63,36 +87,65 @@ function showStara() {
     <h1> wiem że źle wygląda ta góra ale mam sentyment do starych rzeczy</h1>
     `;
 }
+let hsc = {};
+
+/* =====================
+   SHA-256
+   ===================== */
+async function sha256(txt) {
+    const buf = new TextEncoder().encode(txt);
+    const hash = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(hash))
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+}
+
+/* =====================
+   WCZYTAJ JSON
+   ===================== */
+async function loadCodes() {
+    const res = await fetch("chkdsh.json"); // Poprawienie nazwy pliku
+    const data = await res.json();
+
+    for (const hash in data.codes) {
+        if (data.codes[hash] === "X") hsc[hash] = showSecretX;
+        if (data.codes[hash] === "Y") hsc[hash] = showSecretY;
+        if (data.codes[hash] === "ADMIN") hsc[hash] = showSecretAdmin;
+    }
+}
+
+loadCodes();
+
+/* =====================
+   UI
+   ===================== */
 function showCode() {
     document.getElementById("content").innerHTML = `
-        <h1>Sekretna sekcja 🔒</h1>
-
-        <p>Podaj kod:</p>
-
-        <input type="password" id="secretCode" placeholder="wpisz kod">
+        <h2>🔒 Podaj kod</h2>
+        <input type="password" id="secretCode">
         <br><br>
-        <button onclick="checkCode()">Wyślij</button>
-
+        <button onclick="ckd()">OK</button>
         <p id="error" style="color:red;"></p>
     `;
 }
 
-// 🔑 MAPA KODÓW → FUNKCJE
-const codes = {
-    "LI0N123": showSecretX,      // kod do sekcji X
-    "RETRO777": showSecretY,   // kod do sekcji Y
-    "ADMIN42": showSecretAdmin // trzeci kod (opcjonalnie)
-};
+/* =====================
+   SPRAWDZANIE
+   ===================== */
+async function ckd() {
+    const val = document.getElementById("secretCode").value.trim();
+    const err = document.getElementById("error");
 
-function checkCode() {
-    const code = document.getElementById("secretCode").value;
+    const hash = await sha256(val);
 
-    if (codes[code]) {
-        codes[code](); // uruchamia odpowiednią sekcję
+    if (hsc[hash]) {
+        err.innerText = "";
+        hsc[hash]();
     } else {
-        document.getElementById("error").innerText = "❌ Zły kod";
+        err.innerText = "❌ Zły kod";
     }
 }
+
 
 // 🔓 SEKCJA X
 function showSecretX() {
